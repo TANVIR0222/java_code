@@ -171,8 +171,28 @@ public class FirstArray {
         System.out.println("Total sub array" + max_sum );
     }
 
+
+    // kadane's algorithm
+    public static void kadane(int num []){
+        int current_sum = 0;
+        int max_sum = Integer.MIN_VALUE ;
+
+
+        for(int i = 0 ; i < num.length ; i++){
+            current_sum += num[i];
+
+            if (current_sum < 0) {
+                current_sum = 0 ;
+            }
+
+            max_sum = Math.max(current_sum , max_sum);
+        }
+
+        System.out.println(max_sum);
+    }
+
     public static void main(String args[]){
-        int num[] = {1,-2,6,-1 , 3};
+        int num[] = {-2,-3,4,-1,-2,1,5,-3};
 
         // LargestNum(num);
         // int key = 10;
@@ -182,7 +202,7 @@ public class FirstArray {
 
         // System.out.println(index);
 
-        AdPairNumber(num);
+        kadane(num);
 
         // for(int i = 0 ; i < num.length ; i++ ){
         //     System.out.print(num[i] + " ");
