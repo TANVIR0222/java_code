@@ -1,5 +1,7 @@
 import java.util.*;
 
+import org.w3c.dom.traversal.TreeWalker;
+
 public class FirstArray {
 
     public static void LargestNum(int num[]){
@@ -172,7 +174,7 @@ public class FirstArray {
     }
 
 
-    // kadane's algorithm
+    // kadane's algorithom
     public static void kadane(int num []){
         int current_sum = 0;
         int max_sum = Integer.MIN_VALUE ;
@@ -191,18 +193,101 @@ public class FirstArray {
         System.out.println(max_sum);
     }
 
+    // public static int TrappinWrater(int height[]){
+
+    //     int n = height.length ;
+    //     //  calculate left max value 
+    //     int left_max[] = new int[n];
+    //     left_max[0] = height[0];
+    //     for(int i = 1 ; i < n ; i ++ ){
+    //         left_max[i] = Math.max(height[i], left_max[i-1]);
+    //     }
+
+    //     //  calculate right max  value 
+    //     int right_max[ ] = new int[n];
+    //     right_max[n-1] = height[n-1];
+    //     for(int i = n - 2 ;  i >= 0  ; i --){
+    //         right_max[i] = Math.max(height[i], right_max[i + 1]);
+    //     }
+
+    //     // calculate all value 
+    //     int trap_water = 0 ;
+
+    //     // loop 
+    //     for(int i = 0 ; i < n ; i ++){
+    //         // calculate min value 
+    //         int water_level = Math.min(left_max[i], right_max[i]);
+    //         // 
+    //         trap_water += water_level - height[i];
+
+    //     }
+
+    //     return trap_water;
+
+
+
+
+    // }
+
+
+    // 4,2,0,6,3,2,5 
+
+
+    public static int trap_water(int height[]){
+
+
+        int n = height.length ;
+
+
+        // calculate left max value 
+        int left_max[] = new int[n];
+        left_max[0] = height[0];
+        for(int i = 1 ; i < n ; i ++){
+            left_max [i] = Math.max(height[i] , left_max[i - 1]);
+        }
+
+
+        // calculate right max value 
+        int right_max [] = new int[n];
+        right_max[n - 1] = height[n - 1];
+        
+        for(int i = n - 2 ; i >= 0 ; i--){
+            right_max[i] = Math.max(height[i] , right_max[i + 1 ]);
+        }
+
+
+        // 
+
+        int trapping_water = 0;
+        for(int i = 0 ; i < n ; i ++){
+            int water_level = Math.min(left_max[i] , right_max[i]);
+
+            trapping_water += water_level - height[i];
+        }
+
+
+        return trapping_water ;
+        
+
+
+    }
+
+
     public static void main(String args[]){
-        int num[] = {-2,-3,4,-1,-2,1,5,-3};
+        int height[] = {4,2,0,6,3,2,5};
 
         // LargestNum(num);
         // int key = 10;
+
+        System.out.println(trap_water(height));
+
 
 
         // int index = binarySearch(num , key);
 
         // System.out.println(index);
 
-        kadane(num);
+        // kadane(num);
 
         // for(int i = 0 ; i < num.length ; i++ ){
         //     System.out.print(num[i] + " ");
