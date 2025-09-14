@@ -273,13 +273,46 @@ public class FirstArray {
     }
 
 
+    
+
+    public static int maxProfit(int price[]){
+
+
+        int buyPrice = Integer.MAX_VALUE ;
+        int maxProfit = 0;
+        
+        
+        for(int i = 0 ; i < price.length ; i++){
+
+            if(buyPrice < price[i]){
+
+                int profit = price[i] - buyPrice ;
+
+                maxProfit = Math.max(profit , maxProfit);
+
+            }else {
+                buyPrice = price[i];
+            }
+
+
+
+        }
+
+        return maxProfit ;
+
+
+
+    }
+
+
     public static void main(String args[]){
-        int height[] = {4,2,0,6,3,2,5};
+        int height[] = {7,1,5,3,6,4};
 
         // LargestNum(num);
         // int key = 10;
 
-        System.out.println(trap_water(height));
+        System.out.println(maxProfit(height));
+
 
 
 
