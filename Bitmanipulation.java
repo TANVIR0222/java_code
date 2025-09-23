@@ -1,87 +1,86 @@
 public class Bitmanipulation {
 
+    public static void isPrime(int n ) {
 
-    public static void isPrime(int num){
+        int bitMask = 1 ;
 
-        int bitmask = 1 ;
 
-            if((num & bitmask) == 0){
-                System.out.println("is prime ");
-            }else{
-                System.out.println(" juta he to juta he ");
-            }
-    }
-
-    public static int getIthBit(int n , int i ){
-        int bitmask = 1 << i ;
-
-        if((n & bitmask ) == 0 ){
-            return 0 ;
+        if((n & bitMask ) == 1){
+            System.out.println("odd ");
         }else{
-            return 1 ;
+            System.out.println("even");
         }
+        
     }
 
-    public static int setIthBit(int n , int i ){
-        int bitmask = 1 << i ;
+    public static int getIthBits(int n , int i ){
+        int bitBask = 1 << i ;
 
-        return (n | bitmask) ;
-    }
-
-    public static int clearIthBit(int n , int i ){
-        int lsbBit = ~(1 << i);
-        return n & lsbBit ;
-    }
-
-   
-
-    public static boolean oodOREven(int n){
-        int bitmask = 1 ;
-
-        if((n & bitmask) == 1){
-            System.out.println("odd num");
-            return true;
-        }
-
-        System.out.println("even  ");
-        return false;
-    }
-    
-
-    public static int getIthBits(int n  , int  i ){
-
-        if((n & 1 << i) == 0){
+        if((n & bitBask) == 0){
             return 0 ;
-        }else{
+        }else {
             return 1;
         }
-    }
 
+        // return n & bitBask ;
+    }
     public static int setIthBits(int n , int i ){
-        int lsbSetBit = 1 << i ;
-        // System.out.println(n | lsbSetBit);
-        return n | lsbSetBit ;
+        int bitBask = 1 << i ;
+
+        // if((n | bitBask) == 0){
+        //     return 0 ;
+        // }else {
+        //     return 1;
+        // }
+
+        return n | bitBask ;
+    }
+    public static int clearIthBits(int n , int i ){
+        int bitBask = ~(1 << i );
+
+        return n & bitBask ;
     }
 
-    public static int clearIthAllBits(int  n , int i ){
-        int bitmask = (-1 << i);
-        return n & bitmask ;
+    public static int clearIthAllBits(int n , int i ){
+        int bitBask = ((~0) << i);
+
+        return n & bitBask;
     }
 
-    public static int bitmaskClearRange(int n , int i , int j ){
-        int a = (~0) << (j + 1);   // 111...00000
-        int b = (1 << i) - 1;      // 000...111
-        int bitmask = a | b;       // 1s outside [i..j], 0s inside [i..j]
-    
-        return n | bitmask;        // <-- here is the problem
+    public static int clearIthToJthAllBits(int n , int i , int j ){
+        int a = (~0) << j + 1 ;
+        int b = (1 << i )- 1 ;
+
+
+        int bitMask = a | b ;
+
+        return n & bitMask ;
     }
-    
+
+    public static boolean powOfTwo(int n){
+        return (n & (n-1)) == 0 ;
+    }
+
+    public static int countOne(int n){
+        
+        // int bitMask = 1 >
+        int count = 0 ;
+
+        while( n > 0){
+            // System.out.println(n);
+            if((n & 1) != 0){
+                count ++;
+            }
+            n = n >> 1;
+        }
+
+        return count ;
 
 
+    }
 
-    public static void main(String args[]){
-        // System.out.println(6);
-        // oodOREven(8);
-        System.out.println(bitmaskClearRange(10, 2, 4));
+    public static void main(String [] args ){
+        // isPrime(6);
+        System.out.println(countOne(15 ));
     }
 }
